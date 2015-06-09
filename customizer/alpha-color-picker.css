@@ -1,0 +1,82 @@
+/**
+ * Alpha Color Picker CSS
+ */
+
+.customize-control-alpha-color .wp-picker-container .iris-picker {
+    border-bottom:none;
+}
+
+.wp-picker-container .wp-picker-open ~ .wp-picker-holder .alpha-color-picker-container {
+    display: block;
+}
+
+.alpha-color-picker-container {
+    border: 1px solid #dfdfdf;
+    border-top: none;
+    display: none;
+    background: #FFF;
+    padding: 0 11px 10px;
+    position: relative;
+}
+
+.alpha-color-picker-container .ui-slider {
+    position: relative;
+    z-index: 1;
+    height: 24px;
+    text-align: center;
+    margin: 0 auto;
+    width: 88%;
+    width: calc( 100% - 28px );
+}
+
+.alpha-color-picker-container .ui-slider-handle {
+    color: #777;
+    background-color: #FFF;
+    text-shadow: 0 1px 0 #FFF;
+    text-decoration: none;
+    position: absolute;
+    z-index: 2;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    border: 1px solid #aaa;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-top: -2px;
+    height: 20px;
+    width: 20px;
+    cursor: ew-resize;
+    font-size: 0;
+    padding: 3px;
+    line-height: 22px;
+    margin-left: -14px;
+}
+
+.alpha-color-picker-container .ui-slider-handle.show-opacity {
+    font-size: 12px;
+}
+
+.alpha-color-picker-container .click-zone {
+    width: 14px;
+    height: 24px;
+    display: block;
+    position: absolute;
+    left: 10px;
+}
+
+.alpha-color-picker-container .max-click-zone {
+    right: 10px;
+    left: auto;
+}
+
+.alpha-color-picker-container .transparency {
+    height: 24px;
+    width: 100%;
+    background-color: #FFF;
+    background-image: url(transparency-grid.png);
+    box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0;
+    margin-top: -24px;
+}
