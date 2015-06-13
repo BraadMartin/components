@@ -57,15 +57,16 @@ class Customize_Alpha_Color_Control extends WP_Customize_Control {
 		if ( is_array( $this->palette ) ) {
 			$palette = implode( '|', $this->palette );
 		} else {
-			$palette = ( true === $this->palette || 'true' === $this->palette ) ? 'true' : 'false';
+			// Default to true.
+			$palette = ( false === $this->palette || 'false' === $this->palette ) ? 'false' : 'true';
 		}
 
-		// Support passing show_opacity as string or boolean
-		$show_opacity = ( true === $this->show_opacity || 'true' === $this->show_opacity ) ? 'true' : 'false';
+		// Support passing show_opacity as string or boolean. Default to true.
+		$show_opacity = ( false === $this->show_opacity || 'false' === $this->show_opacity ) ? 'false' : 'true';
 		?>
 		<label>
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-			<input class="alpha-color-control" type="text" data-show-opacity="<?php echo $show_opacity; ?>" data-palette="<?php echo esc_attr( $palette ); ?>" data-default-color="<?php echo esc_attr( $this->settings['default']->default ); ?>" <?php $this->link(); ?> />
+			<input class="alpha-color-control" type="text" data-show-opacity="<?php echo $show_opacity; ?>" data-palette="<?php echo esc_attr( $palette ); ?>" data-default-color="<?php echo esc_attr( $this->settings['default']->default ); ?>" <?php $this->link(); ?>  />
 		</label>
 		<?php
 	}
