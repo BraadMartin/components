@@ -10,17 +10,18 @@
  */
 Color.prototype.toString = function( flag ) {
 
-	// If our no-alpha flag has been passed in, output RGBa value with 100% opacity (used to set the background color on the opacity slider)
+	// If our no-alpha flag has been passed in, output RGBa value with 100% opacity.
+	// This is used to set the background color on the opacity slider.
 	if ( 'no-alpha' == flag ) {
 		return this.toCSS( 'rgba', '1' ).replace( /\s+/g, '' );
 	}
 
-	// If we have a proper opacity value, output RGBa
+	// If we have a proper opacity value, output RGBa.
 	if ( 1 > this._alpha ) {
 		return this.toCSS( 'rgba', this._alpha ).replace( /\s+/g, '' );
 	}
 
-	// Proceed with stock color.js Hex output
+	// Proceed with stock color.js Hex output.
 	var hex = parseInt( this._color, 10 ).toString( 16 );
 	if ( this.error ) { return ''; }
 	if ( hex.length < 6 ) {
@@ -36,7 +37,6 @@ Color.prototype.toString = function( flag ) {
  * Given a hex, rgb, or rgba color value, return the alpha channel value.
  */
 function get_alpha_value_from_color( value ) {
-
 	var alphaVal;
 
 	// Remove all spaces from the passed in value to help our RGBa regex.
@@ -49,7 +49,7 @@ function get_alpha_value_from_color( value ) {
 		alphaVal = 100;
 	}
 
-	return alphaVal;	
+	return alphaVal;
 }
 
 jQuery( document ).ready( function( $ ) {
@@ -57,46 +57,51 @@ jQuery( document ).ready( function( $ ) {
 	// Loop over each control and transform it into our color picker.
 	$( '.alpha-color-control' ).each( function() {
 
+		// Scope the vars.
+		var $control, startingColor, paletteInput, showOpacity, defaultColor, palette,
+			colorPickerOptions, $container, $alphaSlider, alphaVal, sliderOptions;
+
 		// Store the control instance.
-		var $control = $( this );
-		
+		$control = $( this );
+
 		// Get a clean starting value for the option.
-		var value = $control.val().replace( /\s+/g, '' );
+		startingColor = $control.val().replace( /\s+/g, '' );
 
 		// Get some data off our control.
-		var paletteInput = $control.attr( 'data-palette' );
-		var showOpacity = $control.attr( 'data-show-opacity' );
+		paletteInput = $control.attr( 'data-palette' );
+		showOpacity = $control.attr( 'data-show-opacity' );
+		defaultColor = $control.attr( 'data-default-color' );
 
 		// Process the palette.
-		if ( paletteInput === 'false' || paletteInput === false ) {
-			var palette = false;
-		} else if ( paletteInput === 'true' || paletteInput === true ) {
-			var palette = true;
+		if ( paletteInput == 'false' ) {
+			palette = false;
+		} else if ( paletteInput == 'true' ) {
+			palette = true;
 		} else {
-			var palette = $control.attr( 'data-palette' ).split( "|" );
+			palette = $control.attr( 'data-palette' ).split( "|" );
 		}
 
 		// Set up the options that we'll pass to wpColorPicker().
-		var colorPickerOptions = {
+		colorPickerOptions = {
 			change: function( event, ui ) {
-				
-				var newValue = $control.val();
-				var defaultValue = $control.data( 'default-color' );
-				var key = $control.attr( 'data-customize-setting-link' );
+				var key, value, alpha, $transparency;
+
+				key = $control.attr( 'data-customize-setting-link' );
+				value = $control.val();
 
 				// If the new value equals the default value then reset the opacity slider.
-				if ( defaultValue == newValue ) {
-					var alpha_val = get_alpha_value_from_color( newValue );
-					$alphaSlider.find( '.ui-slider-handle' ).text( alphaVal ).css( 'left', '100%' );
+				if ( defaultColor == value ) {
+					alpha = get_alpha_value_from_color( value );
+					$alphaSlider.find( '.ui-slider-handle' ).text( alpha );
 				}
-				
+
 				// Send ajax request to wp.customize to trigger the Save action.
 				wp.customize( key, function( obj ) {
-					obj.set( newValue );
+					obj.set( value );
 				});
-				
-				var $transparency = $container.find( '.transparency' );
-				
+
+				$transparency = $container.find( '.transparency' );
+
 				// Always show the background color of the opacity slider at 100% opacity.
 				$transparency.css( 'backgroundColor', ui.color.toString( 'no-alpha' ) );
 			},
@@ -106,52 +111,57 @@ jQuery( document ).ready( function( $ ) {
 		// Create the colorpicker.
 		$control.wpColorPicker( colorPickerOptions );
 
-		var $container = $control.parents( '.wp-picker-container:first' );
+		$container = $control.parents( '.wp-picker-container:first' );
 
 		// Insert our opacity slider.
-		$( '<div class="alpha-color-picker-container"><div class="min-click-zone click-zone"></div><div class="max-click-zone click-zone"></div><div class="alpha-slider"></div><div class="transparency"></div></div>' ).appendTo( $container.find( '.wp-picker-holder' ) );
+		$( '<div class="alpha-color-picker-container">' +
+				'<div class="min-click-zone click-zone"></div>' +
+				'<div class="max-click-zone click-zone"></div>' +
+				'<div class="alpha-slider"></div>' +
+				'<div class="transparency"></div>' +
+			'</div>' ).appendTo( $container.find( '.wp-picker-holder' ) );
 
-		var $alphaSlider = $container.find( '.alpha-slider' );
-		
+		$alphaSlider = $container.find( '.alpha-slider' );
+
 		// If starting value is in format RGBa, grab alpha channel.
-		var alphaVal = get_alpha_value_from_color( value );
+		alphaVal = get_alpha_value_from_color( startingColor );
 
 		// Set up jQuery UI slider() options.
-		var sliderOptions = {
+		sliderOptions = {
 			slide: function( event, ui ) {
+				var key, value;
 
-				var newValue = $control.val();
-				var key = $control.attr( 'data-customize-setting-link' );
-				
+				key = $control.attr( 'data-customize-setting-link' );
+				value = $control.val();
+
 				// Change value shown on slider handle.
 				$( this ).find( '.ui-slider-handle' ).text( ui.value );
 
 				// Send ajax request to wp.customizer to enable Save & Publish button.
 				wp.customize( key, function( obj ) {
-					obj.set( newValue );
+					obj.set( value );
 				});
 			},
 			create: function( event, ui ) {
+				var value = $( this ).slider( 'value' );
 
-				var v = $( this ).slider( 'value' );
-				
 				// Set up initial values.
-				$( this ).find( '.ui-slider-handle' ).text( v );
-				$( this ).siblings( '.transparency ').css( 'background-color', value );
+				$( this ).find( '.ui-slider-handle' ).text( value );
+				$( this ).siblings( '.transparency ').css( 'background-color', startingColor );
 			},
 			value: alphaVal,
-			range: "max",
+			range: 'max',
 			step: 1,
 			min: 0,
 			max: 100,
-			animate: 'slow'
+			animate: 300
 		};
 
 		// Initialize jQuery UI slider with our options.
 		$alphaSlider.slider( sliderOptions );
 
 		// Maybe show the opacity on the handle.
-		if ( 'true' === showOpacity || true === showOpacity ) {
+		if ( 'true' == showOpacity ) {
 			$alphaSlider.find( '.ui-slider-handle' ).addClass( 'show-opacity' );
 		}
 
@@ -167,33 +177,47 @@ jQuery( document ).ready( function( $ ) {
 
 		// Bind event handler for clicking on a palette color.
 		$container.find( '.iris-palette' ).on( 'click', function() {
-			var color = $( this ).css( 'background-color' );
-			var alpha = get_alpha_value_from_color( color );
+			var color, alpha;
+
+			color = $( this ).css( 'background-color' );
+			alpha = get_alpha_value_from_color( color );
+
+			$alphaSlider.slider( 'value', alpha );
+			$alphaSlider.find( '.ui-slider-handle' ).text( alpha );
+		});
+
+		// Bind event handler for clicking on the 'Default' button.
+		$container.find( '.button.wp-picker-default' ).on( 'click', function() {
+			var alpha = get_alpha_value_from_color( defaultColor );
+
 			$alphaSlider.slider( 'value', alpha );
 			$alphaSlider.find( '.ui-slider-handle' ).text( alpha );
 		});
 
 		// Update all the things when the slider is interacted with.
 		$alphaSlider.slider().on( 'slidechange', function( event, ui ) {
-			
-			var newAlphaVal = parseFloat( ui.value );
-			var iris = $control.data( 'a8cIris' );
-			var	colorPicker = $control.data( 'wpWpColorPicker' );
-			
+			var newAlpha, iris, colorPicker, newColor;
+
+			newAlpha = parseFloat( ui.value );
+			iris = $control.data( 'a8cIris' );
+			colorPicker = $control.data( 'wpWpColorPicker' );
+
 			// Set the alpha value on our Iris object.
-			iris._color._alpha = newAlphaVal / 100.0;
-			
+			iris._color._alpha = newAlpha / 100.0;
+
+			// Store the new color value.
+			newColor = iris._color.toString();
+
 			// Set the value of our input.
-			$control.val( iris._color.toString() );
-			
+			$control.val( newColor );
+
 			// Update the background color of the color picker.
 			colorPicker.toggler.css({
-				backgroundColor: $control.val()
+				backgroundColor: newColor
 			});
-			
+
 			// Update the color value of the color picker object.
-			var newVal = $control.val();
-			$control.wpColorPicker( 'color', newVal );
+			$control.wpColorPicker( 'color', newColor );
 		});
 	});
 });

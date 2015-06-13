@@ -10,7 +10,7 @@ class Customize_Alpha_Color_Control extends WP_Customize_Control {
 
 	/**
 	 * Official control name.
-	 */	
+	 */
 	public $type = 'alpha-color';
 
 	/**
@@ -33,8 +33,19 @@ class Customize_Alpha_Color_Control extends WP_Customize_Control {
 	 * stand alone class we'll register and enqueue them here.
 	 */
 	public function enqueue() {
-		wp_enqueue_script( 'alpha-color-picker', get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker.js', array( 'jquery', 'wp-color-picker' ), '1.0.0', true );
-		wp_enqueue_style( 'alpha-color-picker', get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker.css', array( 'wp-color-picker' ), '1.0.0' );
+		wp_enqueue_script(
+			'alpha-color-picker',
+			get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker.js',
+			array( 'jquery', 'wp-color-picker' ),
+			'1.0.0',
+			true
+		);
+		wp_enqueue_style(
+			'alpha-color-picker',
+			get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker.css',
+			array( 'wp-color-picker' ),
+			'1.0.0'
+		);
 	}
 
 	/**
@@ -46,12 +57,15 @@ class Customize_Alpha_Color_Control extends WP_Customize_Control {
 		if ( is_array( $this->palette ) ) {
 			$palette = implode( '|', $this->palette );
 		} else {
-			$palette = (bool)$this->palette;
+			$palette = ( true === $this->palette || 'true' === $this->palette ) ? 'true' : 'false';
 		}
+
+		// Support passing show_opacity as string or boolean
+		$show_opacity = ( true === $this->show_opacity || 'true' === $this->show_opacity ) ? 'true' : 'false';
 		?>
 		<label>
 			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-			<input type="text" data-show-opacity="<?php echo esc_attr( $this->show_opacity ); ?>" data-palette="<?php echo esc_attr( $palette ); ?>" data-default-color="<?php echo esc_attr( $this->settings['default']->default ); ?>" value="<?php echo intval( $this->value() ); ?>" class="alpha-color-control" <?php $this->link(); ?>  />
+			<input class="alpha-color-control" type="text" data-show-opacity="<?php echo $show_opacity; ?>" data-palette="<?php echo esc_attr( $palette ); ?>" data-default-color="<?php echo esc_attr( $this->settings['default']->default ); ?>" <?php $this->link(); ?>  />
 		</label>
 		<?php
 	}
