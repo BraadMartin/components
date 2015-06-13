@@ -11,7 +11,7 @@
 Color.prototype.toString = function( flag ) {
 
 	// If our no-alpha flag has been passed in, output RGBa value with 100% opacity.
-	// This is used to set the background color on the opacity slider.
+	// This is used to set the background color on the opacity slider during color changes.
 	if ( 'no-alpha' == flag ) {
 		return this.toCSS( 'rgba', '1' ).replace( /\s+/g, '' );
 	}
@@ -21,7 +21,7 @@ Color.prototype.toString = function( flag ) {
 		return this.toCSS( 'rgba', this._alpha ).replace( /\s+/g, '' );
 	}
 
-	// Proceed with stock color.js Hex output.
+	// Proceed with stock color.js hex output.
 	var hex = parseInt( this._color, 10 ).toString( 16 );
 	if ( this.error ) { return ''; }
 	if ( hex.length < 6 ) {
@@ -34,7 +34,7 @@ Color.prototype.toString = function( flag ) {
 };
 
 /**
- * Given a hex, rgb, or rgba color value, return the alpha channel value.
+ * Given an RGBa, RGB, or hex color value, return the alpha channel value.
  */
 function get_alpha_value_from_color( value ) {
 	var alphaVal;
@@ -67,7 +67,7 @@ jQuery( document ).ready( function( $ ) {
 		// Get a clean starting value for the option.
 		startingColor = $control.val().replace( /\s+/g, '' );
 
-		// Get some data off our control.
+		// Get some data off the control.
 		paletteInput = $control.attr( 'data-palette' );
 		showOpacity = $control.attr( 'data-show-opacity' );
 		defaultColor = $control.attr( 'data-default-color' );
@@ -89,7 +89,7 @@ jQuery( document ).ready( function( $ ) {
 				key = $control.attr( 'data-customize-setting-link' );
 				value = $control.val();
 
-				// If the new value equals the default value then reset the opacity slider.
+				// Set the opacity value on the slider handle when the default color button is clicked.
 				if ( defaultColor == value ) {
 					alpha = get_alpha_value_from_color( value );
 					$alphaSlider.find( '.ui-slider-handle' ).text( alpha );
@@ -123,7 +123,7 @@ jQuery( document ).ready( function( $ ) {
 
 		$alphaSlider = $container.find( '.alpha-slider' );
 
-		// If starting value is in format RGBa, grab alpha channel.
+		// If starting value is in format RGBa, grab the alpha channel.
 		alphaVal = get_alpha_value_from_color( startingColor );
 
 		// Set up jQuery UI slider() options.
