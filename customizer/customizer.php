@@ -6,8 +6,8 @@
 add_action( 'customize_register', 'components_customize_register' );
 function components_customize_register( $wp_customize ) {
 
-	// Inlcude Alpha Color Picker
-	require_once( dirname( __FILE__ ) . '/alpha-color-picker.php' );
+	// Inlcude the Alpha Color Picker
+	require_once( dirname( __FILE__ ) . '/alpha-color-picker/alpha-color-picker.php' );
 
 	// Add our test section.
 	$wp_customize->add_section(
