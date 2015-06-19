@@ -195,7 +195,7 @@ jQuery( document ).ready( function( $ ) {
 		});
 
 		// Update all the things when the slider is interacted with.
-		$alphaSlider.slider().on( 'slidechange', function( event, ui ) {
+		$alphaSlider.slider().on( 'slide', function( event, ui ) {
 			var newAlpha, iris, colorPicker, newColor;
 
 			newAlpha = parseFloat( ui.value );
