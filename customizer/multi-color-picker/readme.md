@@ -30,30 +30,32 @@ function yourprefix_customize_register( $wp_customize ) {
 	/**
 	 * Define the color settings array that we'll pass to our helper function to
 	 * register each setting and group them under a single control.
+	 *
+	 * For this example we'll register a group of background colors.
 	 */
 	$bg_colors = array(
 		'body_bg' => array(
-			'label'	=> __( 'Body Background', 'yourprefix' ),
+			'label'   => __( 'Body Background', 'yourprefix' ),
 			'default' => 'rgba(255, 0, 0, 0.7)',
 			'palette' => $palette, // This could also be true or false
 		),
 		'header_bg' => array(
-			'label'	=> __( 'Header Background', 'yourprefix' ),
+			'label'   => __( 'Header Background', 'yourprefix' ),
 			'default' => 'rgba(54, 0, 170, 0.8)',
 			'palette' => $palette,
 		),
 		'sidebar_bg' => array(
-			'label'	=> __( 'Sidebar Background', 'yourprefix' ),
+			'label'   => __( 'Sidebar Background', 'yourprefix' ),
 			'default' => '#FFCC00',
 			'palette' => $palette,
 		),
 		'article_bg' => array(
-			'label'	=> __( 'Article Background', 'yourprefix' ),
+			'label'   => __( 'Article Background', 'yourprefix' ),
 			'default' => 'rgba( 20, 20, 20, 0.8 )',
 			'palette' => $palette,
 		),
 		'footer_bg' => array(
-			'label'	=> __( 'Footer Background', 'yourprefix' ),
+			'label'   => __( 'Footer Background', 'yourprefix' ),
 			'default' => '#00CC77',
 			'palette' => $palette,
 		),
@@ -65,9 +67,9 @@ function yourprefix_customize_register( $wp_customize ) {
 	 * This could also have an active_callback, a sanitize_callback, etc.
 	 */
 	$bg_colors_control_data = array(
-		'label' => __( 'Background Colors', 'yourprefix' ),
+		'label'       => __( 'Background Colors', 'yourprefix' ),
 		'description' => __( 'This is the optional control description.', 'yourprefix' ),
-		'section' => 'colors'
+		'section'     => 'colors'
 	);
 
 	/**
@@ -75,11 +77,11 @@ function yourprefix_customize_register( $wp_customize ) {
 	 * a single Multi Color Picker control.
 	 */
 	components_register_color_group(
-		$wp_customize, // The main customizer object.
-		$bg_colors, // The array of color setting data for this group.
+		$wp_customize,                  // The main customizer object.
+		$bg_colors,                     // The array of color setting data for this group.
 		'yourprefix_background_colors', // The string name for the option to use.
-		$bg_colors_control_data, // The array of standard control data.
-		$palette // A fallback palette to use if none is specified in the color setting data.
+		$bg_colors_control_data,        // The array of standard control data.
+		$palette                        // A fallback palette to use if none is specified in the color setting data.
 	);
 
 }
