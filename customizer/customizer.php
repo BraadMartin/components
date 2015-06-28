@@ -59,7 +59,7 @@ function components_customize_register( $wp_customize ) {
 				'label'     => __( 'Alpha Color Picker Test', 'components' ),
 				'section'   => 'components_test_section',
 				'settings'  => 'components_alpha_color_test_setting',
-				'palette'	=> array(
+				'palette'   => array(
 					'#3FADD7',
 					'rgba(0,0,0,0.5)',
 					'#666666',
@@ -142,27 +142,27 @@ function components_customize_register( $wp_customize ) {
 	 */
 	$bg_colors = array(
 		'body_bg' => array(
-			'label'	  => __( 'Body Background', 'components' ),
+			'label'   => __( 'Body Background', 'components' ),
 			'default' => 'rgba(255, 0, 0, 0.7)',
 			'palette' => $palette, // This could also be true or false
 		),
 		'header_bg' => array(
-			'label'	  => __( 'Header Background', 'components' ),
+			'label'   => __( 'Header Background', 'components' ),
 			'default' => 'rgba(54, 0, 170, 0.8)',
 			'palette' => $palette,
 		),
 		'sidebar_bg' => array(
-			'label'	  => __( 'Sidebar Background', 'components' ),
+			'label'   => __( 'Sidebar Background', 'components' ),
 			'default' => '#FFCC00',
 			'palette' => $palette,
 		),
 		'article_bg' => array(
-			'label'	  => __( 'Article Background', 'components' ),
+			'label'   => __( 'Article Background', 'components' ),
 			'default' => 'rgba( 20, 20, 20, 0.8 )',
 			'palette' => $palette,
 		),
 		'footer_bg' => array(
-			'label'	  => __( 'Footer Background', 'components' ),
+			'label'   => __( 'Footer Background', 'components' ),
 			'default' => '#00CC77',
 			'palette' => $palette,
 		),
@@ -174,9 +174,9 @@ function components_customize_register( $wp_customize ) {
 	 * This could also have an active_callback, a sanitize_callback, etc.
 	 */
 	$bg_colors_control_data = array(
-		'label' => __( 'Background Colors', 'components' ),
+		'label'       => __( 'Background Colors', 'components' ),
 		'description' => __( 'This is the optional control description.', 'components' ),
-		'section' => 'components_test_section'
+		'section'     => 'components_test_section'
 	);
 
 	/**
@@ -195,24 +195,24 @@ function components_customize_register( $wp_customize ) {
 	 * Define our color settings under the group "Text Colors".
 	 */
 	$text_colors = array(
-		'body_text' => array(
-			'label'	=> __( 'Body Text', 'components' ),
+		'body_text'   => array(
+			'label'   => __( 'Body Text', 'components' ),
 			'default' => '#444444',
 		),
 		'heading_text' => array(
-			'label'	=> __( 'Headings', 'components' ),
-			'default' => '#8866AA',
+			'label'    => __( 'Headings', 'components' ),
+			'default'  => '#8866AA',
 		),
 		'footer_text' => array(
-			'label'	=> __( 'Footer Text', 'components' ),
+			'label'   => __( 'Footer Text', 'components' ),
 			'default' => '#CCCCCC',
 		),
 		'paragraph_text' => array(
-			'label'	=> __( 'Paragraph Text', 'components' ),
-			'default' => '#222222',
+			'label'      => __( 'Paragraph Text', 'components' ),
+			'default'    => '#222222',
 		),
-		'link_text' => array(
-			'label'	=> __( 'Link Text', 'components' ),
+		'link_text'   => array(
+			'label'   => __( 'Link Text', 'components' ),
 			'default' => 'rgba( 120, 40, 88, 0.7 )',
 		),
 	);
@@ -223,7 +223,7 @@ function components_customize_register( $wp_customize ) {
 	 * This could also have an active_callback, a sanitize_callback, etc.
 	 */
 	$text_colors_control_data = array(
-		'label' => __( 'Text Colors', 'components' ),
+		'label'   => __( 'Text Colors', 'components' ),
 		'section' => 'components_test_section'
 	);
 
@@ -273,10 +273,10 @@ function components_register_color_group( $wp_customize, $option_name, $color_se
 		$wp_customize->add_setting(
 			$color_setting_id,
 			array(
-				'default'           => $setting_data['default'],
-				'type'	            => 'option',
-				'capability'        => 'edit_theme_options', // Modify this as needed.
-				'transport'	        => 'postMessage', // postMessage or refresh
+				'default'    => $setting_data['default'],
+				'type'       => 'option',
+				'capability' => 'edit_theme_options', // Modify this as needed.
+				'transport'  => 'postMessage', // postMessage or refresh
 			)
 		);
 
@@ -287,10 +287,10 @@ function components_register_color_group( $wp_customize, $option_name, $color_se
 		// Build the more advanced color_data array that contains all the extra information
 		// we need for each color setting. We'll pass this to our control.
 		$color_data[$color_setting_id] = array(
-			'label' => $setting_data['label'],
-			'default' => $setting_data['default'],
+			'label'        => $setting_data['label'],
+			'default'      => $setting_data['default'],
 			'show_opacity' => $setting_data['show_opacity'],
-			'palette' => $setting_data['palette']
+			'palette'      => $setting_data['palette']
 		);
 	}
 
