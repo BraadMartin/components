@@ -8,7 +8,7 @@ Here's what it looks like:
 
 ## How It Works ##
 
-Each color is registered to its own setting and can be used exactly as if the color was picked with the standard Customize_Color_Control. Live-previewing in JS using transport: postMessage works great, as does transport: refresh. This control takes advantage of the support in the Customizer API for hooking a single control up to multiple settings. Multiple "groups" of colors (multiple instances of the Customize_Multi_Color_Control class) can be u
+Each color is registered to its own setting and can be used exactly as if the color was picked with the standard Customize_Color_Control. Live-previewing in JS using transport: postMessage works great, as does transport: refresh. This control takes advantage of the support in the Customizer API for hooking a single control up to multiple settings. Multiple "groups" of colors (multiple instances of the Customize_Multi_Color_Control class) can be used together without limitations.
 
 One key difference between this control and my [Alpha Color Picker Control](https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker) is that the palette, default color, and show_opacity options are no longer explicity tied to the control. I wanted to allow these to be set individually for each color, so the control requires a single additional color_data array with all the extra data about each color setting.
 
