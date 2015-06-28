@@ -6,6 +6,8 @@ Here's what it looks like:
 
 ![WordPress Multi Color Picker](https://github.com/BraadMartin/components/blob/master/demos/multi-color-picker.gif)
 
+![Wordpress Multi Color Picker Color Grid](https://github.com/BraadMartin/components/blob/master/demos/multi-color-picker-grid.png)
+
 ## How It Works ##
 
 Each color is registered to its own setting and can be used exactly as if the color was picked with the standard Customize_Color_Control. Live-previewing in JS using transport: postMessage works great, as does transport: refresh. This control takes advantage of the support in the Customizer API for hooking a single control up to multiple settings. Multiple "groups" of colors (multiple instances of the Customize_Multi_Color_Control class) can be used together without limitations.
