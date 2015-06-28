@@ -12,7 +12,7 @@ Each color is registered to its own setting and can be used exactly as if the co
 
 One key difference between this control and my [Alpha Color Picker Control](https://github.com/BraadMartin/components/tree/master/customizer/alpha-color-picker) is that the palette, default color, and show_opacity options are no longer explicity tied to the control. I wanted to allow these to be set individually for each color, so the control requires a single additional color_data array with all the extra data about each color setting.
 
-You could write out the color_data array and register the settings and control yourself, but I've also included a helper function that I recommend using that takes care of everything. Since the helper function is not part of the control itself it lives in the customizer.php file in the customizer folder. The helper function is components_register_color_group, but "components" is just my prefix for this repo and should be changed to the prefix for your project.
+You could write out the color_data array and register the settings and control yourself, but I've also included a helper function that I recommend using that takes care of everything. Since the helper function is not part of the control itself it lives in the customizer.php file in the customizer folder of this repo. The helper function is components_register_color_group, but "components" is just my prefix for this repo and should be changed to the prefix for your project.
 
 Feedback and pull requests are encouraged! Feel free to use this in any of your projects.
 
