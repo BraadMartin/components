@@ -86,3 +86,6 @@ function yourprefix_customize_register( $wp_customize ) {
 
 }
 ```
+
+A big thanks to David Gwyer for providing the original inspiration for this control.
+
