@@ -28,6 +28,19 @@ function yourprefix_customize_register( $wp_customize ) {
 	require_once( dirname( __FILE__ ) . '/multi-color-picker/multi-color-picker.php' );
 
 	/**
+	 * Define a default palette that we'll use for some of the colors.
+	 * 
+	 * We could certainly define a separate palette for each color also.
+	 */
+	$palette = array(
+		'rgba(255, 0, 0, 0.7)',
+		'rgba(54, 0, 170, 0.8)',
+		'#FFCC00',
+		'rgba( 20, 20, 20, 0.8 )',
+		'#00CC77',
+	);
+
+	/**
 	 * Define the color settings array that we'll pass to our helper function to
 	 * register each setting and group them under a single control.
 	 *
@@ -36,7 +49,7 @@ function yourprefix_customize_register( $wp_customize ) {
 	$bg_colors = array(
 		'body_bg' => array(
 			'label'   => __( 'Body Background', 'yourprefix' ),
-			'default' => 'rgba(255, 0, 0, 0.7)',
+			'default' => 'rgba(255, 0, 0, 0.7)', // Hex, RGB, or RGBa works here
 			'palette' => $palette, // This could also be true or false
 		),
 		'header_bg' => array(
