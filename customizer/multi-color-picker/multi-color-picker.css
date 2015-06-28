@@ -1,0 +1,198 @@
+/**
+ * Multi Color Picker CSS
+ */
+
+.customize-control-multi-color .wp-picker-open ~ .wp-picker-holder .alpha-slider-container {
+	display: block;
+}
+
+.customize-control-multi-color .wp-picker-open ~ .wp-picker-input-wrap .wp-picker-default {
+	display: inline-block !important;
+}
+
+.customize-control-multi-color .multi-color-picker-triggers {
+	margin-bottom: 2px;
+}
+
+.customize-control-multi-color .multi-color-picker-trigger {
+	background-image: url(transparency-grid.png);
+	box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+	height: 24px;
+	width: 24px;
+	display: inline-block;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+
+.customize-control-multi-color .multi-color-picker-trigger .wp-color-result {
+	margin: 0;
+	height: 24px;
+	padding-left: 24px;
+	border: 0;
+}
+
+.customize-control-multi-color .wp-picker-container {
+	float: left;
+	height: 0;
+}
+
+.customize-control-multi-color .wp-picker-container.open {
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.customize-control-multi-color .wp-picker-container .multi-color-control-color-title {
+	margin-bottom: 6px;
+	color: #333;
+}
+
+.customize-control-multi-color .wp-picker-input-wrap {
+	overflow: hidden;
+	width: 100%;
+}
+
+.customize-control-multi-color .wp-picker-container input[type=text].wp-color-picker {
+	width: 66.5%;
+	width: calc( 100% - 85px );
+	padding: 8px 10px 7px;
+	float: left;
+}
+
+.customize-control-multi-color .wp-picker-default {
+	float: right;
+	height: 0;
+}
+
+.customize-control-multi-color .iris-picker {
+	border-bottom: none;
+}
+
+.customize-control-multi-color .iris-square:hover,
+.customize-control-multi-color .iris-slider:hover {
+	cursor: pointer;
+}
+
+.customize-control-multi-color .wp-picker-container .wp-color-result {
+	height: 0;
+	width: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.customize-control-multi-color .alpha-slider-container {
+	border: 1px solid #dfdfdf;
+	border-top: none;
+	display: none;
+	background: #FFF;
+	padding: 0 11px 10px;
+	position: relative;
+}
+
+.customize-control-multi-color .alpha-slider-container .click-zone:hover,
+.customize-control-multi-color .alpha-slider-container .alpha-slider:hover {
+	cursor: pointer;
+}
+
+.customize-control-multi-color .alpha-slider-container .ui-slider {
+	position: relative;
+	z-index: 1;
+	height: 24px;
+	text-align: center;
+	margin: 0 auto;
+	width: 88%;
+	width: calc( 100% - 28px );
+}
+
+.customize-control-multi-color .alpha-slider-container .ui-slider-handle {
+	color: #777;
+	background-color: #FFF;
+	text-shadow: 0 1px 0 #FFF;
+	text-decoration: none;
+	position: absolute;
+	z-index: 2;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	border: 1px solid #aaa;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin-top: -2px;
+	height: 20px;
+	width: 20px;
+	cursor: ew-resize;
+	font-size: 0;
+	padding: 3px;
+	line-height: 22px;
+	margin-left: -14px;
+}
+
+.customize-control-multi-color .alpha-slider-container .ui-slider-handle.show-opacity {
+	font-size: 12px;
+}
+
+.customize-control-multi-color .alpha-slider-container .click-zone {
+	width: 14px;
+	height: 24px;
+	display: block;
+	position: absolute;
+	left: 10px;
+}
+
+.customize-control-multi-color .alpha-slider-container .max-click-zone {
+	right: 10px;
+	left: auto;
+}
+
+.customize-control-multi-color .alpha-slider-container .transparency {
+	height: 24px;
+	width: 100%;
+	background-color: #FFF;
+	background-image: url(transparency-grid.png);
+	box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 0;
+	margin-top: -24px;
+}
+
+.customize-control-multi-color .wp-color-result::after {
+	display: none;
+}
+
+@media (min-width: 641px) {
+
+	.customize-control-multi-color .wp-picker-container input[type=text].wp-color-picker {
+		width: 71.5%;
+		width: calc( 100% - 75px );
+		padding: 5px 10px;
+	}
+
+	.customize-control-multi-color .wp-picker-input-wrap {
+		padding-bottom: 3px;
+	}
+
+}
+
+@media (min-width: 783px) {
+
+	.customize-control-multi-color .wp-picker-container input[type=text].wp-color-picker {
+		width: 75%;
+		width: calc( 100% - 64px );
+		padding: 3px 10px;
+	}
+
+}
+
+@media (min-width: 981px) {
+
+	.customize-control-multi-color {
+		padding-bottom: 10px;
+	}
+
+	.customize-control-multi-color:last-child {
+		padding-bottom: 0;
+	}
+
+}
