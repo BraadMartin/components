@@ -24,7 +24,7 @@ function components_customize_register( $wp_customize ) {
 
 	/**
 	 * Define a default palette that we'll use for some of the colors.
-	 * 
+	 *
 	 * We could certainly define a separate palette for each color also.
 	 */
 	$palette = array(
@@ -188,7 +188,8 @@ function components_customize_register( $wp_customize ) {
 		'components_background_colors',
 		$bg_colors,
 		$bg_colors_control_data,
-		$palette
+		$palette,
+		'postMessage'
 	);
 
 	/**
@@ -236,7 +237,8 @@ function components_customize_register( $wp_customize ) {
 		'components_text_colors',
 		$text_colors,
 		$text_colors_control_data,
-		$palette
+		$palette,
+		'postMessage'
 	);
 
 }
@@ -248,9 +250,10 @@ function components_customize_register( $wp_customize ) {
  * @param  String  $option_name       The shared option name to use for the settings.
  * @param  Array   $color_settings    The array of color settings data.
  * @param  Array   $control_data      The data to pass to the control.
- * @param  Array   $fallback_palette  An array of fallback palette colors to use if a palette is not included in $color_settings. (optional) 
+ * @param  Array   $fallback_palette  An array of fallback palette colors to use if a palette is not included in $color_settings. (optional)
+ * @param  String  $transport         The transport method for the setting group.
  */
-function components_register_color_group( $wp_customize, $option_name, $color_settings = array(), $control_data = array(), $fallback_palette = 'true' ) {
+function components_register_color_group( $wp_customize, $option_name, $color_settings = array(), $control_data = array(), $fallback_palette = 'true', $transport = 'refresh' ) {
 
 	/**
 	 * Loop over the colors array and register each setting while also building
@@ -276,7 +279,7 @@ function components_register_color_group( $wp_customize, $option_name, $color_se
 				'default'    => $setting_data['default'],
 				'type'       => 'option',
 				'capability' => 'edit_theme_options', // Modify this as needed.
-				'transport'  => 'postMessage', // postMessage or refresh
+				'transport'  => $transport, // postMessage or refresh
 			)
 		);
 

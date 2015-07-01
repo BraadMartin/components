@@ -31,7 +31,7 @@ function yourprefix_customize_register( $wp_customize ) {
 
 	/**
 	 * Define a default palette that we'll use for some of the colors.
-	 * 
+	 *
 	 * We could certainly define a separate palette for each color also.
 	 */
 	$palette = array(
@@ -96,7 +96,8 @@ function yourprefix_customize_register( $wp_customize ) {
 		$bg_colors,                     // The array of color setting data for this group.
 		'yourprefix_background_colors', // The string name for the option to use.
 		$bg_colors_control_data,        // The array of standard control data.
-		$palette                        // A fallback palette to use if none is specified in the color setting data.
+		$palette,                       // A fallback palette to use if none is specified in the color setting data.
+		$transport                      // The transport method to use for the setting group.
 	);
 
 }
