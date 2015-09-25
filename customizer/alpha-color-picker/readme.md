@@ -52,4 +52,8 @@ function yourprefix_customize_register( $wp_customize ) {
 
 I wrote a post with more detailed usage information [on my blog](http://braadmartin.com/alpha-color-picker-control-for-the-wordpress-customizer/).
 
-Feedback and pull requests are encouraged! Feel free to use this in any of your projects.
+Feedback and pull requests are encouraged!
+
+## License ##
+
+This control is licensed under the GPL. Please do anything you want with it. :)

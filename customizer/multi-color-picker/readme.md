@@ -16,7 +16,7 @@ One key difference between this control and my [Alpha Color Picker Control](http
 
 You could write out the color_data array and register the settings and control yourself, but I've also included a helper function that I recommend using that takes care of everything. Since the helper function is not part of the control itself it lives in the customizer.php file in the customizer folder of this repo. The helper function is components_register_color_group, but "components" is just my prefix for this repo and should be changed to the prefix for your project.
 
-Feedback and pull requests are encouraged! Feel free to use this in any of your projects.
+Feedback and pull requests are encouraged!
 
 ## Usage ##
 
@@ -105,3 +105,6 @@ function yourprefix_customize_register( $wp_customize ) {
 
 A big thanks to David Gwyer for providing the original inspiration for this control.
 
+## License ##
+
+This control is licensed under the GPL. Please do anything you want with it. :)

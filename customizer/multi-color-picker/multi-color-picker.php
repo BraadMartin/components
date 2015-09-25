@@ -5,12 +5,25 @@
  * This control allows registering a group of color settings to a single control,
  * and it uses a custom version of the stock WP color picker that supports RGBa
  * color values and includes an opacity slider.
+ *
+ * This Multi Color Picker is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this Multi Color Picker. If not, see <http://www.gnu.org/licenses/>.
  */
 class Customize_Multi_Color_Control extends WP_Customize_Control {
 
 	/**
 	 * Official control name.
-	 */	
+	 */
 	public $type = 'multi-color';
 
 	/**
@@ -76,6 +89,5 @@ class Customize_Multi_Color_Control extends WP_Customize_Control {
 			<input type="text" class="multi-color-control" data-show-opacity="<?php echo esc_attr( $show_opacity ); ?>" data-palette="<?php echo $palette ?>" data-title="<?php echo esc_attr( $label ); ?>" data-default-color="<?php echo esc_attr( $default ); ?>" value="<?php echo $this->settings[$key]->value(); ?>" <?php echo $this->get_link( $key ); ?> />
 			<?php
 		}
-
 	}
 }
