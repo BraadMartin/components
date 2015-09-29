@@ -55,7 +55,7 @@ class Customize_Alpha_Color_Control extends WP_Customize_Control {
 		);
 		wp_enqueue_style(
 			'alpha-color-picker',
-			get_stylesheet_directory_uri() . str_replace( str_replace('\\', '/', get_stylesheet_directory()), '', str_replace('\\', '/', __DIR__) ) . 'alpha-color-picker.css',
+			get_stylesheet_directory_uri() . str_replace( str_replace('\\', '/', get_stylesheet_directory()), '', str_replace('\\', '/', __DIR__) ) . '/alpha-color-picker.css',
 			array( 'wp-color-picker' ),
 			'1.0.0'
 		);
