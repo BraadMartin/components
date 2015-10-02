@@ -53,7 +53,7 @@ function acp_get_alpha_value_from_color( value ) {
 }
 
 /**
- * Force update the alpha value of the color picker object and maybe the alpha slider. 
+ * Force update the alpha value of the color picker object and maybe the alpha slider.
  */
  function acp_update_alpha_value_on_color_control( alpha, $control, $alphaSlider, update_slider ) {
 	var iris, colorPicker, color;
@@ -112,16 +112,16 @@ jQuery( document ).ready( function( $ ) {
 
 		// Get some data off the control.
 		paletteInput = $control.attr( 'data-palette' );
-		showOpacity = $control.attr( 'data-show-opacity' );
+		showOpacity  = $control.attr( 'data-show-opacity' );
 		defaultColor = $control.attr( 'data-default-color' );
 
 		// Process the palette.
-		if ( paletteInput == 'false' ) {
+		if ( paletteInput.indexOf( '|' ) !== -1 ) {
+			palette = paletteInput.split( '|' );
+		} else if ( 'false' == paletteInput ) {
 			palette = false;
-		} else if ( paletteInput == 'true' ) {
-			palette = true;
 		} else {
-			palette = $control.attr( 'data-palette' ).split( "|" );
+			palette = true;
 		}
 
 		// Set up the options that we'll pass to wpColorPicker().
@@ -225,6 +225,14 @@ jQuery( document ).ready( function( $ ) {
 		// Bind event handler for clicking on the 'Default' button.
 		$container.find( '.button.wp-picker-default' ).on( 'click', function() {
 			var alpha = acp_get_alpha_value_from_color( defaultColor );
+
+			acp_update_alpha_value_on_alpha_slider( alpha, $alphaSlider );
+		});
+
+		// Bind event handler for typing or pasting into the input.
+		$control.on( 'input', function() {
+			var value = $( this ).val();
+			var alpha = acp_get_alpha_value_from_color( value );
 
 			acp_update_alpha_value_on_alpha_slider( alpha, $alphaSlider );
 		});
