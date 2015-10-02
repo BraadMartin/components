@@ -6,6 +6,8 @@ Here's what it looks like:
 
 ![WordPress Alpha Color Picker](https://github.com/BraadMartin/components/blob/master/demos/alpha-color-picker.gif)
 
+A jQuery plugin version of this alpha color picker that can be used in the admin outside of the Customizer can be found [here](https://github.com/BraadMartin/components/tree/master/alpha-color-picker).
+
 ## Usage ##
 
 ```php
