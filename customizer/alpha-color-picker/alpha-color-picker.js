@@ -222,6 +222,22 @@ jQuery( document ).ready( function( $ ) {
 			$control.wpColorPicker( 'color', color );
 		});
 
+		// Bind event handler for clicking on the 'Clear' button.
+		$container.find( '.button.wp-picker-clear' ).on( 'click', function() {
+			var key = $control.attr( 'data-customize-setting-link' );
+
+			// The #fff color is delibrate here. This sets the color picker to white instead of the
+			// defult black, which puts the color picker in a better place to visually represent empty.
+			$control.wpColorPicker( 'color', '#ffffff' );
+
+			// Set the actual option value to empty string.
+			wp.customize( key, function( obj ) {
+				obj.set( '' );
+			});
+
+			acp_update_alpha_value_on_alpha_slider( 100, $alphaSlider );
+		});
+
 		// Bind event handler for clicking on the 'Default' button.
 		$container.find( '.button.wp-picker-default' ).on( 'click', function() {
 			var alpha = acp_get_alpha_value_from_color( defaultColor );
