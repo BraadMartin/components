@@ -56,6 +56,7 @@ echo '<input type="text" class="alpha-color-picker" name="xxx_color_setting" val
 /**
  * Helper function for outputting an Alpha Color Picker field.
  *
+ * @param  string  $class         The class attribute value.
  * @param  string  $name          The name attribute value.
  * @param  string  $value         The initial color value.
  * @param  string  $palette       The palette of colors to include. Supports 'true' for
@@ -65,21 +66,22 @@ echo '<input type="text" class="alpha-color-picker" name="xxx_color_setting" val
  * @param  string  $show_opacity  Whether to show the opacity number on the slider. Supports
  *                                'true' or 'false'.
  */
-function xxx_output_alpha_color_picker_field( $name, $value, $palette = 'true', $default = '#222', $show_opacity = 'true' ) {
+function xxx_output_alpha_color_picker_field( $class, $name, $value, $palette = 'true', $default = '#222', $show_opacity = 'true' ) {
 
 	printf(
 		'<input type="text" class="%s" name="%s" value="%s" data-palette="%s" data-default-color="%s" data-show-opacity="%s" />',
-		'alpha-color-picker',
-		$name,
-		$value,
-		$palette,
-		$default,
-		$show_opacity
+		esc_attr( $class ),
+		esc_attr( $name ),
+		esc_attr( $value ),
+		esc_attr( $palette ),
+		esc_attr( $default ),
+		esc_attr( $show_opacity )
 	);
 }
 
 // Example of outputting the field using the helper function.
 xxx_output_alpha_color_picker_field(
+	'alpha-color-picker',
 	'xxx_color_setting',
 	'rgba(20,20,20,0.7)',
 	'true',
