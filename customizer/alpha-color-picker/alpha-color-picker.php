@@ -46,16 +46,22 @@ class Customize_Alpha_Color_Control extends WP_Customize_Control {
 	 * stand alone class we'll register and enqueue them here.
 	 */
 	public function enqueue() {
+
+		$default_script_location = get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker/alpha-color-picker.js';
+
 		wp_enqueue_script(
 			'alpha-color-picker',
-			get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker/alpha-color-picker.js',
+			apply_filters('alpha-color-picker-scripts', $default_script_location),
 			array( 'jquery', 'wp-color-picker' ),
 			'1.0.0',
 			true
 		);
+
+		$default_styles_location = get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker/alpha-color-picker.css';
+
 		wp_enqueue_style(
 			'alpha-color-picker',
-			get_stylesheet_directory_uri() . '/admin/customizer/alpha-color-picker/alpha-color-picker.css',
+			apply_filters('alpha-color-picker-styles', $default_styles_location),
 			array( 'wp-color-picker' ),
 			'1.0.0'
 		);
