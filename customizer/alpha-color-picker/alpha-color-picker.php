@@ -79,6 +79,11 @@ if(class_exists('WP_Customize_Control')){
 			$show_opacity = ( false === $this->show_opacity || 'false' === $this->show_opacity ) ? 'false' : 'true';
 
 			// Begin the output. ?>
+			<?php
+			    if($this->label){
+			      echo '<span class="customize-control-title">' . sanitize_text_field( $this->label ) . '</span>';
+			    }
+     			?>
 			<label>
 				<?php // Output the label and description if they were passed in.
 				if ( isset( $this->label ) && '' !== $this->label ) {
