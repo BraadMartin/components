@@ -6,7 +6,7 @@
 	border-bottom: none;
 }
 
-.alpha-color-picker-wrap .wp-picker-input-wrap {
+.alpha-color-picker-wrap .wp-picker-open+.wp-picker-input-wrap {
 	display: block;
 }
 
