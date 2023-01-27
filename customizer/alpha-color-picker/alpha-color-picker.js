@@ -22,10 +22,10 @@ Color.prototype.toString = function( flag ) {
 	}
 
 	// Proceed with stock color.js hex output.
-	var hex = parseInt( this._color, 10 ).toString( 16 );
+	let hex = parseInt( this._color, 10 ).toString( 16 );
 	if ( this.error ) { return ''; }
 	if ( hex.length < 6 ) {
-		for ( var i = 6 - hex.length - 1; i >= 0; i-- ) {
+		for ( let i = 6 - hex.length - 1; i >= 0; i-- ) {
 			hex = '0' + hex;
 		}
 	}
@@ -37,7 +37,7 @@ Color.prototype.toString = function( flag ) {
  * Given an RGBa, RGB, or hex color value, return the alpha channel value.
  */
 function acp_get_alpha_value_from_color( value ) {
-	var alphaVal;
+	let alphaVal;
 
 	// Remove all spaces from the passed in value to help our RGBa regex.
 	value = value.replace( / /g, '' );
@@ -56,7 +56,7 @@ function acp_get_alpha_value_from_color( value ) {
  * Force update the alpha value of the color picker object and maybe the alpha slider.
  */
  function acp_update_alpha_value_on_color_control( alpha, $control, $alphaSlider, update_slider ) {
-	var iris, colorPicker, color;
+	let iris, colorPicker, color;
 
 	iris = $control.data( 'a8cIris' );
 	colorPicker = $control.data( 'wpWpColorPicker' );
@@ -101,7 +101,7 @@ jQuery( document ).ready( function( $ ) {
 	$( '.alpha-color-control' ).each( function() {
 
 		// Scope the vars.
-		var $control, startingColor, paletteInput, showOpacity, defaultColor, palette,
+		let $control, startingColor, paletteInput, showOpacity, defaultColor, palette,
 			colorPickerOptions, $container, $alphaSlider, alphaVal, sliderOptions;
 
 		// Store the control instance.
@@ -127,7 +127,7 @@ jQuery( document ).ready( function( $ ) {
 		// Set up the options that we'll pass to wpColorPicker().
 		colorPickerOptions = {
 			change: function( event, ui ) {
-				var key, value, alpha, $transparency;
+				let key, value, alpha, $transparency;
 
 				key = $control.attr( 'data-customize-setting-link' );
 				value = $control.wpColorPicker( 'color' );
@@ -172,7 +172,7 @@ jQuery( document ).ready( function( $ ) {
 		// Set up jQuery UI slider() options.
 		sliderOptions = {
 			create: function( event, ui ) {
-				var value = $( this ).slider( 'value' );
+				let value = $( this ).slider( 'value' );
 
 				// Set up initial values.
 				$( this ).find( '.ui-slider-handle' ).text( value );
@@ -204,7 +204,7 @@ jQuery( document ).ready( function( $ ) {
 
 		// Bind event handler for clicking on a palette color.
 		$container.find( '.iris-palette' ).on( 'click', function() {
-			var color, alpha;
+			let color, alpha;
 
 			color = $( this ).css( 'background-color' );
 			alpha = acp_get_alpha_value_from_color( color );
@@ -224,7 +224,7 @@ jQuery( document ).ready( function( $ ) {
 
 		// Bind event handler for clicking on the 'Clear' button.
 		$container.find( '.button.wp-picker-clear' ).on( 'click', function() {
-			var key = $control.attr( 'data-customize-setting-link' );
+			let key = $control.attr( 'data-customize-setting-link' );
 
 			// The #fff color is delibrate here. This sets the color picker to white instead of the
 			// defult black, which puts the color picker in a better place to visually represent empty.
@@ -240,22 +240,22 @@ jQuery( document ).ready( function( $ ) {
 
 		// Bind event handler for clicking on the 'Default' button.
 		$container.find( '.button.wp-picker-default' ).on( 'click', function() {
-			var alpha = acp_get_alpha_value_from_color( defaultColor );
+			let alpha = acp_get_alpha_value_from_color( defaultColor );
 
 			acp_update_alpha_value_on_alpha_slider( alpha, $alphaSlider );
 		});
 
 		// Bind event handler for typing or pasting into the input.
 		$control.on( 'input', function() {
-			var value = $( this ).val();
-			var alpha = acp_get_alpha_value_from_color( value );
+			let value = $( this ).val();
+			let alpha = acp_get_alpha_value_from_color( value );
 
 			acp_update_alpha_value_on_alpha_slider( alpha, $alphaSlider );
 		});
 
 		// Update all the things when the slider is interacted with.
 		$alphaSlider.slider().on( 'slide', function( event, ui ) {
-			var alpha = parseFloat( ui.value ) / 100.0;
+			let alpha = parseFloat( ui.value ) / 100.0;
 
 			acp_update_alpha_value_on_color_control( alpha, $control, $alphaSlider, false );
 
@@ -265,3 +265,10 @@ jQuery( document ).ready( function( $ ) {
 
 	});
 });
+
+setTimeout(function(){
+  document.querySelectorAll('.customize-control-alpha-color .customize-control-title').forEach(function(elm){
+    const par = elm.parentNode.parentNode.parentNode.parentNode;
+    par.insertBefore(elm, par.firstElementChild);
+  });
+}, 1000);
